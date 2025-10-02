@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation d’inscription</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn-primary {
+            background-color: #2196F3;
+        }
+        .btn-primary:hover {
+            background-color: #1976D2;
+        }
+        .btn-success {
+            background-color: #4CAF50;
+        }
+        .btn-success:hover {
+            background-color: #45a049;
+        }
+        .info {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ Inscription validée !</h1>
+        <div class="info">
+            <p>Merci <strong>{{ candidat.prenoms }} {{ candidat.nom }}</strong> pour votre inscription au concours <strong>{{ candidat.get_concours_souhaite_display }}</strong>.</p>
+            <p><strong>Date d’inscription :</strong> {{ candidat.date_inscription|date:"d/m/Y à H:i" }}</p>
+        </div>
+        <div class="buttons">
+            <a href="/" class="btn btn-primary">📝 Faire une autre inscription</a>
+            <a href="{% url 'recu_pdf' candidat.pk %}" class="btn btn-success">📄 Télécharger mon reçu en PDF</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #004080;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            background-color: #004080;
+            color: white;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .photo {
+            width: 100px;
+            height: 100px;
+            border: 3px solid #ffcc00;
+            object-fit: cover;
+            order: 2;
+            margin-left: 20px;
+        }
+        .info {
+            margin-bottom: 20px;
+            background-color: #e6f0ff;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .info p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .documents {
+            margin-top: 30px;
+            border-top: 2px solid #004080;
+            padding-top: 20px;
+            background-color: #e6f0ff;
+            border-radius: 8px;
+        }
+        .documents h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #003366;
+        }
+        .documents ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .documents li {
+            margin: 5px 0;
+            font-size: 12px;
+            color: #003366;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header" style="background-color: #004080; color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="margin: 0;">Reçu d'Inscription au Concours d'Esatic</h1>
+        {% if photo_base64 %}
+            <img src="{{ photo_base64 }}" alt="Photo du candidat" class="photo" style="order: 2; margin-left: 20px; border: 3px solid #ffcc00;">
+        {% endif %}
+    </div>
+
+    <div class="info">
+        <p><strong>Nom :</strong> {{ candidat.nom }}</p>
+        <p><strong>Prénoms :</strong> {{ candidat.prenoms }}</p>
+        <p><strong>Niveau d'études :</strong> {{ candidat.niveau_etude }}</p>
+        <p><strong>Établissement d'origine :</strong> {{ candidat.etablissement_origine }}</p>
+        <p><strong>Concours souhaité :</strong> {{ candidat.get_concours_souhaite_display }}</p>
+        <p><strong>Date d'inscription :</strong> {{ candidat.date_inscription|date:"d/m/Y à H:i" }}</p>
+    </div>
+
+    <div class="documents">
+        <h2>Documents fournis :</h2>
+        <ul>
+            {% if candidat.extrait_naissance %}
+                <li>✓ Extrait de naissance</li>
+            {% endif %}
+            {% if candidat.certificat_nationalite %}
+                <li>✓ Certificat de nationalité</li>
+            {% endif %}
+            {% if candidat.lettre_motivation %}
+                <li>✓ Lettre de motivation</li>
+            {% endif %}
+            {% if candidat.diplome %}
+                <li>✓ Diplôme</li>
+            {% endif %}
+            {% if candidat.photo %}
+                <li>✓ Photo d'identité</li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>Ce reçu confirme l'inscription au concours. Conservez-le précieusement.</p>
+        <p>Généré le {{ candidat.date_inscription|date:"d/m/Y" }}</p>
+    </div>
+</body>
+</html>
