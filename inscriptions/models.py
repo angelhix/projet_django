@@ -5,6 +5,8 @@ class Candidat(models.Model):
         ('TWIN', 'Technologie du Web et Image Numerique'),
         ('Srit', 'Sytemes et Reseaux Informatiques et Telecom'),
         ('Mp2i', 'Classe préparatoire: Mathématiques Physique et Informatique'),
+        ('Entd', 'Economie Numérique et Transformation Digitale'),
+        ('Dasi', 'Data Science et Intelligence Artificielle'),
     ]
 
     nom = models.CharField(max_length=100)
